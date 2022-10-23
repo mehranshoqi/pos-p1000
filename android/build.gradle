@@ -1,0 +1,63 @@
+group 'ir.pigi.android_pos'
+version '1.0'
+
+buildscript {
+    repositories {
+        google()
+        mavenCentral()
+    }
+
+    dependencies {
+        classpath 'com.android.tools.build:gradle:4.2.1'
+
+    }
+}
+
+rootProject.allprojects {
+    repositories {
+        google()
+        mavenCentral()
+    }
+}
+
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion 33
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    defaultConfig {
+        minSdkVersion 23
+        multiDexEnabled true
+    }
+    buildTypes {
+        release {
+            // TODO: Add your own signing config for the release build.
+            // Signing with the debug keys for now, so `flutter run --release` works.
+            minifyEnabled false
+//            useProguard true
+//            consumerProguardFiles 'proguard-rules.pro'
+            signingConfig signingConfigs.debug
+        }
+    }
+
+    buildFeatures {
+//        dataBinding {
+//            enabled true
+//        }
+    }
+}
+
+
+dependencies {
+    // https://mvnrepository.com/artifact/androidx.databinding/library
+//    implementation group: 'androidx.databinding', name: 'library', version: '3.2.0-alpha11'
+    implementation 'androidx.databinding:databinding-runtime:7.3.0'
+    implementation 'com.google.code.gson:gson:2.9.1'
+    implementation 'androidx.core:core:1.9.0'
+    compileOnly files('libs/Rahyab_Hybrid_CPSDK_1.0.20.aar')
+}
