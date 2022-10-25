@@ -36,8 +36,8 @@ class _MyAppState extends State<MyApp> {
     // Platform messages may fail, so we use a try/catch PlatformException.
     // We also handle the message potentially returning null.
     try {
-      platformVersion =
-          await _androidPosPlugin.getPlatformVersion() ?? 'Unknown platform version';
+      platformVersion = await _androidPosPlugin.getPlatformVersion() ??
+          'Unknown platform version';
     } on PlatformException {
       platformVersion = 'Failed to get platform version.';
     }
@@ -60,43 +60,54 @@ class _MyAppState extends State<MyApp> {
           title: const Text('Plugin example app'),
         ),
         body: Center(
-            child:Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-              Text('Running on: $_platformVersion\n'),
-              ElevatedButton(onPressed: ()async=>await _androidPosPlugin.startPaymentTxn("test","11000",(model) {
-                setState(() {
-                  _model = model;
-                });
-              }), child: Text("Pay         ")),
-                ElevatedButton(onPressed: ()async=>await _androidPosPlugin.checkPaper("test",(model) {
-                  setState(() {
-                    _model = model;
-                  });
-                }), child: Text("Check paper ")),
-                ElevatedButton(onPressed: ()async=>await _androidPosPlugin.startCamera("test",(model) {
-                  setState(() {
-                    _model = model;
-                  });
-                }), child: Text("Start Scanner ")),
-                ElevatedButton(onPressed: () async{
+            child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text('Running on: $_platformVersion\n'),
+            ElevatedButton(
+                onPressed: () async => await _androidPosPlugin
+                        .startPaymentTxn("test", "11000", (model) {
+                      setState(() {
+                        _model = model;
+                      });
+                    }),
+                child: const Text("Pay")),
+            ElevatedButton(
+                onPressed: () async =>
+                    await _androidPosPlugin.checkPaper("test", (model) {
+                      setState(() {
+                        _model = model;
+                      });
+                    }),
+                child: const Text("Check paper ")),
+            ElevatedButton(
+                onPressed: () async =>
+                    await _androidPosPlugin.startCamera("test", (model) {
+                      setState(() {
+                        _model = model;
+                      });
+                    }),
+                child: const Text("Start Scanner ")),
+            ElevatedButton(
+                onPressed: () async {
                   final ImagePicker _picker = ImagePicker();
-                  final XFile? image = await _picker.pickImage(source: ImageSource.gallery);
+                  final XFile? image =
+                      await _picker.pickImage(source: ImageSource.gallery);
                   var list = await image?.readAsBytes();
                   String base64Image = base64Encode(list!);
                   await _androidPosPlugin.printBitmap(base64Image, "test");
-                }, child: Text("Print Image ")),
-              SizedBox(height: 25,),
-              Text("Message: ${_model?.Message}"),
-              Text("status: ${_model?.status}"),
-              Text("RRN: ${_model?.RRN}"),
-              Text("Date: ${_model?.DateTime}"),
-              Text("ResponseCode: ${_model?.ResponseCode}"),
-              Text("CardNo: ${_model?.CardNo}"),
-              Text("TerminalNo: ${_model?.TerminalNo}"),
-          ],)
-
-        ),
+                },
+                child: const Text("Print Image ")),
+            const SizedBox(height: 25),
+            Text("Message: ${_model?.Message}"),
+            Text("status: ${_model?.status}"),
+            Text("RRN: ${_model?.RRN}"),
+            Text("Date: ${_model?.DateTime}"),
+            Text("ResponseCode: ${_model?.ResponseCode}"),
+            Text("CardNo: ${_model?.CardNo}"),
+            Text("TerminalNo: ${_model?.TerminalNo}"),
+          ],
+        )),
       ),
     );
   }

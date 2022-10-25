@@ -46,7 +46,7 @@ public class AndroidPosPlugin implements FlutterPlugin, MethodCallHandler {
         channel.invokeMethod("cameraResult", json);
       }
       else
-      channel.invokeMethod("paymentResult", json);
+      channel.invokeMethod("paymentResult", json);0
     });
 //    SDKManager.purchase(context, HostApp.UNKNOWN,1200,1,0,false,null,null,null,());
   }
