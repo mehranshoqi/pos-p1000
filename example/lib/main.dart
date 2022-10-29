@@ -8,7 +8,7 @@ import 'package:flutter/services.dart';
 import 'package:android_pos/android_pos.dart';
 import 'package:image_picker/image_picker.dart';
 
-void main() {
+void main() { 
   runApp(const MyApp());
 }
 
