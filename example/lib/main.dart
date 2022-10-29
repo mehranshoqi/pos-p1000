@@ -66,12 +66,12 @@ class _MyAppState extends State<MyApp> {
             Text('Running on: $_platformVersion\n'),
             ElevatedButton(
                 onPressed: () async => await _androidPosPlugin
-                        .startPaymentTxn("test", "11000", (model) {
+                        .startPaymentTxn("test", "14000", (model) {
                       setState(() {
                         _model = model;
                       });
                     }),
-                child: const Text("Pay")),
+                child: const Text("Pay 4")),
             ElevatedButton(
                 onPressed: () async =>
                     await _androidPosPlugin.checkPaper("test", (model) {

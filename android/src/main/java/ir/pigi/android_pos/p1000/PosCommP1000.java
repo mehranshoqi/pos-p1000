@@ -63,8 +63,8 @@ public class PosCommP1000 implements IPosComm {
     public void startPayTxn(Context context,String storeName, String amount) {
         Intent intent = new Intent(PosTags.Action);
         intent.putExtra(PosTransactionType.transactionType, PosTransactionType.Sale);
-        intent.putExtra(PosTags.CompanyName, "test");
-        intent.putExtra(PosTags.AM, "11000");
+        intent.putExtra(PosTags.CompanyName, storeName);
+        intent.putExtra(PosTags.AM, amount);
         intent.putExtra("paymentType", "CARD");
         intent.setFlags(FLAG_ACTIVITY_NEW_TASK);
         context.startActivity(intent);

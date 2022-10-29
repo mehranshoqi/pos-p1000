@@ -46,7 +46,7 @@ public class AndroidPosPlugin implements FlutterPlugin, MethodCallHandler {
         channel.invokeMethod("cameraResult", json);
       }
       else
-      channel.invokeMethod("paymentResult", json);0
+      channel.invokeMethod("paymentResult", json);
     });
 //    SDKManager.purchase(context, HostApp.UNKNOWN,1200,1,0,false,null,null,null,());
   }
@@ -60,6 +60,7 @@ public class AndroidPosPlugin implements FlutterPlugin, MethodCallHandler {
     else if(call.method.equals("startPaymentTxn")){
       String storeName = call.argument("storeName");
       String amount = call.argument("amount");
+      Log.d("pay amount :",amount);
 
       pos.startPayTxn(context,storeName,amount);
     }

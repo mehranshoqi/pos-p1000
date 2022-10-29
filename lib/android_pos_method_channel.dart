@@ -16,17 +16,21 @@ class MethodChannelAndroidPos extends AndroidPosPlatform {
 
   MethodChannelAndroidPos() {
     methodChannel.setMethodCallHandler((call) async {
+      print('we are here !!!');
       switch (call.method) {
         case "paymentResult":
+          print('*#*#*#*#***##*');
           print(call.arguments.toString());
           var res = PosRespModel.fromJson(call.arguments);
           _callback!(res);
           break;
         case "paperCheckResult":
+          print(' - - - -- ');
           var res = PosRespModel.fromJson(call.arguments);
           _callbackPaper!(res);
           break;
         case "cameraResult":
+          print('--- 8*** camera result');
           var res = PosRespModel.fromJson(call.arguments);
           _callbackCamera!(res);
           break;
@@ -44,6 +48,7 @@ class MethodChannelAndroidPos extends AndroidPosPlatform {
   @override
   Future<String?> startPaymentTxn(
       String storeName, String amount, PaymentCallback callback) async {
+    print('start pay ment txn line 51');
     _callback = callback;
     await methodChannel.invokeMethod<String>(
         'startPaymentTxn', {"storeName": storeName, "amount": amount});
